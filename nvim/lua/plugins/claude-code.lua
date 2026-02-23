@@ -1,34 +1,25 @@
 return {
-  "carlos-rodrigo/claude-code.nvim",
+  "coder/claudecode.nvim",
+  dependencies = { "folke/snacks.nvim" },
+  config = true,
   keys = {
-    { "<C-\\>", "<cmd>ClaudeCodeToggle<cr>", desc = "claude: toggle", mode = { "n", "t" } },
-    { "<leader>clc", "<cmd>ClaudeCodeToggle<cr>", desc = "claude: toggle" },
-    { "<leader>cln", "<cmd>ClaudeCodeNew<cr>", desc = "claude: new session" },
-    { "<leader>cls", "<cmd>ClaudeCodeSend<cr>", desc = "claude: send selection", mode = "v" },
-    { "<leader>clv", "<cmd>ClaudeCodeVsplit<cr>", desc = "claude: open in vsplit" },
-    { "<leader>clS", "<cmd>ClaudeCodeSaveSession<cr>", desc = "claude: save session" },
-    { "<leader>clu", "<cmd>ClaudeCodeUpdateSession<cr>", desc = "claude: update session" },
-    { "<leader>clb", "<cmd>ClaudeCodeSessions<cr>", desc = "claude: browse sessions" },
-    { "<leader>clr", "<cmd>ClaudeCodeRestoreSession<cr>", desc = "claude: restore session" },
-    { "<leader>clw", "<cmd>ClaudeCodeNewWithSelection<cr>", desc = "claude: new with selection", mode = "v" },
+    { "<C-\\>", "<cmd>ClaudeCode<cr>", mode = { "n", "t" }, desc = "Toggle Claude" },
+    { "<leader>a", nil, desc = "AI/Claude Code" },
+    { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+    { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+    { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+    { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+    { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+    { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+    { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+    {
+      "<leader>as",
+      "<cmd>ClaudeCodeTreeAdd<cr>",
+      desc = "Add file",
+      ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+    },
+    -- Diff management
+    { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+    { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
   },
-  config = function()
-    -- Double Escape to exit terminal mode
-    vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
-
-    require("claude-code").setup({
-      claude_code_cmd = "claude",
-      window = {
-        type = "vsplit",
-        position = "right",
-      },
-      auto_scroll = true,
-      save_session = true,
-      auto_save_session = true, -- Auto-save on focus loss
-      auto_save_notify = true, -- Show notifications when auto-saving
-      session_dir = vim.fn.stdpath("data") .. "/claude-code-sessions/",
-      -- Disable built-in keybindings since we're using LazyVim keys spec
-      keybindings = false,
-    })
-  end,
 }
