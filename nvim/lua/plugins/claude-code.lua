@@ -19,7 +19,8 @@ return {
     require("claude-code").setup({
       claude_code_cmd = "claude",
       window = {
-        type = "float",
+        type = "vsplit",
+        position = "right",
       },
       auto_scroll = true,
       save_session = true,
