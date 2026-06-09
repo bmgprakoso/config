@@ -9,9 +9,7 @@
           "from": {
             "key_code": "left_control",
             "modifiers": {
-              "optional": [
-                "any"
-              ]
+              "optional": ["any"]
             }
           },
           "to": [
