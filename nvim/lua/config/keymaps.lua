@@ -15,3 +15,6 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()
 end, opts)
+
+-- Exit terminal mode to Normal mode without the default <C-\><C-n> chord
+keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
