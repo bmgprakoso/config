@@ -1,0 +1,13 @@
+[core]
+	excludesfile = ~/.config/git/ignore
+[user]
+	name = Bambang Adi Prakoso
+	email = bambang.adi@proton.me
+[commit]
+	template = ~/.config/git/commit-template
+
+[includeIf "gitdir:~/Documents/Projects/Work/"]
+    path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/Documents/Projects/Personal/"]
+    path = ~/.config/git/config-personal
